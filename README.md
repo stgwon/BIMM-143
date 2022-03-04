@@ -1,2 +1,2 @@
 # BIMM-143
-BIMM143 Bioinformatics Winter 2022
+This repo is for my UCSD BIMM143 bioinformatics class for Winter 2022. 
