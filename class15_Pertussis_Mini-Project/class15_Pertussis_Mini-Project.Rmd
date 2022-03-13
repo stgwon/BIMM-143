@@ -2,7 +2,9 @@
 title: "class15_Pertussis_Mini-Project"
 author: "Seong Tae Gwon"
 date: "3/14/2022"
-output: html_document
+output:
+  pdf_document: default
+  html_document: default
 ---
 
 # Background
@@ -92,16 +94,20 @@ ggplot(cdc) +
   labs(x="Year", y="Number of cases",
        title="Pertussis Cases by Year (1922-2019)")
 ```
-After the introduction of wP vaccine, Pertussis cases dropped significantly. However, after the introduction of aP vaccine, Pertussis cases increased.
-**COME BACK TO THIS**
+After the introduction of wP vaccine, Pertussis cases dropped significantly. However, after the introduction of aP vaccine, Pertussis cases increased slightly.
 
 > Q3. Describe what happened after the introduction of the aP vaccine? Do you have a possible explanation for the observed trend?
 
 #### Answer:
-After the introduction of aP vaccine, Pertussis cases increased.
-Hint:
-It is clear from the CDC data that pertussis cases are once again increasing. For example, we can see that in 2012 the CDC reported 48,277 cases of pertussis in the United States. This is the largest number of cases reported since 1955, when 62,786 cases were reported. The pertussis field has several hypotheses for the resurgence of pertussis including (in no particular order): 1) more sensitive PCR-based testing, 2) vaccination hesitancy 3) bacterial evolution (escape from vaccine immunity), 4) waning of immunity in adolescents originally primed as infants with the newer aP vaccine as compared to the older wP vaccine.
-**COME BACK TO THIS**
+After the introduction of aP vaccine in 1996, Pertussis cases increased again after 2000. There are several hypotheses for the resurgence of Pertussis including (from lab): 
+
+1. more sensitive PCR-based testing
+
+2. increasing vaccination hesitancy
+
+3. bacterial evolution for immunity
+
+4. waning of immunity in adolescents originally primed as infants with the newer aP vaccine as compared to the older wP vaccine in 1946
 
 # 3. Exploring CMI-PB data
 
@@ -211,9 +217,15 @@ ggplot(subject) +
   facet_wrap(vars(infancy_vac), nrow=2) 
 ```
 
+```{r}
+x <- t.test(time_length( wp$age, "years" ),
+       time_length( ap$age, "years" ))
+
+x$p.value
+```
+
 #### Answer:
-Yes, two groups are significantly different. 
-**COME BACK TO THIS**
+Yes. As observed in the above faceted box plot, two groups are significantly different. Additionally, the p-value generated from performing t-test of two groups is lower than the threshold value of 0.01.
 
 ## Joining multiple tables
 
@@ -225,7 +237,7 @@ specimen <- read_json("https://www.cmi-pb.org/api/specimen", simplifyVector = TR
 titer <- read_json("https://www.cmi-pb.org/api/ab_titer", simplifyVector = TRUE) 
 ```
 
-To know whether a given specimen_id comes from an aP or wP individual we need to link (a.k.a. “join” or merge) our specimen and subject data frames. The excellent dplyr package (that we have used previously) has a family of join() functions that can help us with this common task:
+To know whether a given specimen_id `comes from an aP or wP individual we need to link (a.k.a. “join” or merge) our specimen and subject data frames. The excellent dplyr package (that we have used previously) has a family of join() functions that can help us with this common task:
 
 > Q9. Complete the code to join specimen and subject tables to make a new merged data frame containing all specimen records along with their associated subject details:
 
@@ -259,8 +271,7 @@ table(abdata$visit)
 ```
 
 #### Answer:
-The number of visit 8 specimens is significantly smaller than other visits.
-**COME BACK TO THIS**
+The number of visit 8 specimens (80) is significantly smaller than other visits (5797-3920).
 
 # 4. Examine IgG1 Ab titer levels
 
@@ -284,7 +295,7 @@ ggplot(ig1) +
 > Q14. What antigens show differences in the level of IgG1 antibody titers recognizing them over time? Why these and not others?
 
 #### Answer:
-**COME BACK TO THIS**
+FIM2/3 and FHA shows notable differences in the level of IgG1 antibody titers recognizing them over time. These two are clear antigen of interest that participate in substrate attachment of proteins from B pertussis. Others may not or weakly interact in substrate attachment of proteins from B.pertussis.
 
 We can attempt to examine differences between wP and aP here by setting color and/or facet values of the plot to include infancy_vac status (see below). However these plots tend to be rather busy and thus hard to interpret easily.
 
@@ -309,14 +320,6 @@ ggplot(ig1) +
 
 #### Answer:
 ```{r}
-filter(ig1, antigen=="Measles") %>%
-  ggplot() +
-  aes(ab_titer, col=infancy_vac) +
-  geom_boxplot(show.legend = FALSE) +
-  facet_wrap(vars(visit)) +
-  theme_bw() +
-  labs(title="Measles antigen levels per visit (aP red, wP teal)")
-
 filter(ig1, antigen=="FIM2/3") %>%
   ggplot() +
   aes(ab_titer, col=infancy_vac) +
@@ -324,19 +327,33 @@ filter(ig1, antigen=="FIM2/3") %>%
   facet_wrap(vars(visit)) +
   theme_bw() +
   labs(title="FIM2/3 antigen levels per visit (aP red, wP teal)")
+
+filter(ig1, antigen=="FHA") %>%
+  ggplot() +
+  aes(ab_titer, col=infancy_vac) +
+  geom_boxplot(show.legend = FALSE) +
+  facet_wrap(vars(visit)) +
+  theme_bw() +
+  labs(title="FHA antigen levels per visit (aP red, wP teal)")
+
+filter(ig1, antigen=="OVA") %>%
+  ggplot() +
+  aes(ab_titer, col=infancy_vac) +
+  geom_boxplot(show.legend = FALSE) +
+  facet_wrap(vars(visit)) +
+  theme_bw() +
+  labs(title="OVA antigen levels per visit (aP red, wP teal)")
 ```
 
 > Q16. What do you notice about these two antigens time course and the FIM2/3 data in particular?
 
 #### Answer:
-Hint:
-FIM2/3 levels clearly rise over time and far exceed those of Measles. They also appear to peak at visit 5 and then decline. This trend appears similar for for wP and aP subjects.
-**COME BACK TO THIS**
+Levels of both antigens of interest, FIM2/3 and FHA, increase over time and exceed those of other antigens. Particularly, they peak at visit 5 and then decline for both wP and aP subjects. Other antigens like OVA have slight changes without any noticeable trend.
 
 > Q17. Do you see any clear difference in aP vs. wP responses?
 
 #### Answer:
-**COME BACK TO THIS**
+Yes. In the beginning, wP vaccines tend to have higher antigen levels than aP vaccines but aP vaccines gradually surpasses wP vaccines over time. 
 
 # 5. Obtaining CMI-PB RNASeq data
 
@@ -371,12 +388,12 @@ ggplot(ssrna) +
 > Q19. What do you notice about the expression of this gene (i.e. when is it at it’s maximum level)?
 
 #### Answer:
-**COME BACK TO THIS**
+The expression of this gene is at it's maximum level during visit 4. 
 
 > Q20. Does this pattern in time match the trend of antibody titer data? If not, why not?
 
 #### Answer:
-**COME BACK TO THIS**
+This pattern in time do match the trend of antibody titer data (FIM2/3 data in particular) that peaks at visit 5 and then decline. This gene expression pattern peaks at visit 4 since cells make antibodies which live longer. 
 
 We can dig deeper and color and/or facet by infancy_vac status:
 
