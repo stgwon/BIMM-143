@@ -1,5 +1,4 @@
-# UCSD Winter 2022 BIMM 143: 
-# Introduction to Bioinformatics
+# UCSD Winter 2022 BIMM 143: Introduction to Bioinformatics
 
 - Lab 01: [Bioinformatics Databases and Key Online Resources](https://github.com/stgwon/BIMM-143/blob/main/Lab%201.pdf)
 - Lab 02: [Sequence Alignment & Database Searching](https://github.com/stgwon/BIMM-143/blob/main/Lab%202.pdf)
@@ -16,7 +15,7 @@
 - Lab 11: [Transcriptomics & DESeq2 Analysis ](https://github.com/stgwon/BIMM-143/blob/main/class11/class11.pdf)
 - Lab 12: [DESeq2 Mini-Project](https://github.com/stgwon/BIMM-143/blob/main/class12/class12.pdf)
 - HW 13: [Unix Basics](https://github.com/stgwon/BIMM-143/blob/main/HW%20Class13%20(Unix%20Basics).pdf)
-- Lab 14: [COVID19 Mini-Project].(https://github.com/stgwon/BIMM-143/blob/main/class14_Covid_Mini-Project/class14_Covid_Mini-Project.pdf)
+- Lab 14: [COVID19 Mini-Project](https://github.com/stgwon/BIMM-143/blob/main/class14_Covid_Mini-Project/class14_Covid_Mini-Project.pdf)
 - Lab 15: [Pertussis Resurgence Mini-Project](https://github.com/stgwon/BIMM-143/blob/main/class15_Pertussis_Mini-Project/class15_Pertussis_Mini-Project.pdf)
 
 # Class Website
