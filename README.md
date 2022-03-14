@@ -1,4 +1,5 @@
-# UCSD Winter 2022 BIMM 143: Introduction to Bioinformatics
+# UCSD Winter 2022 BIMM 143: 
+# Introduction to Bioinformatics
 
 - Lab 01: [Bioinformatics Databases and Key Online Resources](https://github.com/stgwon/BIMM-143/blob/main/Lab%201.pdf)
 - Lab 02: [Sequence Alignment & Database Searching](https://github.com/stgwon/BIMM-143/blob/main/Lab%202.pdf)
