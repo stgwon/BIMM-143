@@ -17,6 +17,7 @@
 - HW 13: [Unix Basics](https://github.com/stgwon/BIMM-143/blob/main/HW%20Class13%20(Unix%20Basics).pdf)
 - Lab 14: [COVID19 Mini-Project](https://github.com/stgwon/BIMM-143/blob/main/class14_Covid_Mini-Project/class14_Covid_Mini-Project.pdf)
 - Lab 15: [Pertussis Resurgence Mini-Project](https://github.com/stgwon/BIMM-143/blob/main/class15_Pertussis_Mini-Project/class15_Pertussis_Mini-Project.pdf)
+- Final Project: [Find a Gene](https://github.com/stgwon/BIMM-143/blob/main/Find%20a%20Gene%20Project/BIMM%20143%20Find%20a%20Gene%20Project.pdf)
 
 # Class Website
 [BIMM 143 Winter 2022](https://bioboot.github.io/bimm143_W22/)
